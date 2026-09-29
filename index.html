@@ -1,1278 +1,641 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÉLIA — Beauty & Hair</title>
-    <meta name="description"
-        content="ÉLIA Beauty & Hair — Beleza, sofisticação e experiências exclusivas para seus cabelos.">
-    <!-- FONTES -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-    <!-- =====================================================
-         CSS
-    ====================================================== -->
-    <style>
-        /* =====================================================
-           VARIÁVEIS
-        ====================================================== */
-        :root {
-            --pink: #e9a7b7;
-            --pink-light: #f8dce3;
-            --pink-pale: #fff5f7;
-            --wine: #7a1635;
-            --wine-dark: #430d20;
-            --gold: #d8b36a;
-            --gold-light: #ecd7a4;
-            --cream: #fffaf8;
-            --white: #ffffff;
-            --black: #1c1014;
-            --gray: #756a6d;
-            --border: rgba(122, 22, 53, 0.15);
-            --serif: "Cormorant Garamond", serif;
-            --sans: "DM Sans", sans-serif;
-            --transition: 0.4s ease;
-        }
-        /* =====================================================
-           RESET
-        ====================================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            background: var(--cream);
-            color: var(--black);
-            font-family: var(--sans);
-            overflow-x: hidden;
-        }
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-        button {
-            font-family: inherit;
-        }
-        /* =====================================================
-           HEADER
-        ====================================================== */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 95px;
-            padding: 0 6vw;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            z-index: 1000;
-            color: white;
-            transition: var(--transition);
-        }
-        .header.scrolled {
-            height: 75px;
-            background: rgba(67, 13, 32, 0.95);
-            backdrop-filter: blur(15px);
-        }
-        /* LOGO */
-        .logo {
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
-        }
-        .logo span {
-            font-family: var(--serif);
-            font-size: 2rem;
-            font-weight: 600;
-            letter-spacing: 4px;
-        }
-        .logo small {
-            margin-top: 5px;
-            font-size: 7px;
-            letter-spacing: 3px;
-            text-align: center;
-            opacity: .8;
-        }
-        /* =====================================================
-           MENU
-        ====================================================== */
-        .nav {
-            display: flex;
-            gap: 35px;
-        }
-        .nav a {
-            position: relative;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            opacity: .85;
-            transition: var(--transition);
-        }
-        .nav a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 0;
-            height: 1px;
-            background: var(--gold);
-            transition: var(--transition);
-        }
-        .nav a:hover {
-            color: var(--gold-light);
-        }
-        .nav a:hover::after {
-            width: 100%;
-        }
-        /* BOTÃO AGENDAR */
-        .header-button {
-            border: 1px solid rgba(255,255,255,.5);
-            padding: 13px 25px;
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: var(--transition);
-        }
-        .header-button:hover {
-            background: var(--gold);
-            border-color: var(--gold);
-            color: var(--wine-dark);
-        }
-        /* MENU MOBILE */
-        .menu-button {
-            display: none;
-            background: none;
-            border: none;
-            width: 35px;
-            cursor: pointer;
-        }
-        .menu-button span {
-            display: block;
-            height: 1px;
-            background: white;
-            margin: 7px 0;
-            transition: .3s;
-        }
-        /* =====================================================
-           HERO
-        ====================================================== */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 9vw;
-            color: white;
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(67,13,32,.95) 0%,
-                    rgba(67,13,32,.65) 45%,
-                    rgba(67,13,32,.15) 100%
-                ),
-                linear-gradient(
-                    120deg,
-                    #8e294b,
-                    #d990a5
-                );
-            overflow: hidden;
-        }
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            right: -150px;
-            top: -150px;
-            border-radius: 50%;
-            border: 1px solid rgba(216,179,106,.4);
-        }
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 350px;
-            height: 350px;
-            right: 50px;
-            bottom: -180px;
-            border-radius: 50%;
-            border: 1px solid rgba(216,179,106,.25);
-        }
-        .hero-content {
-            position: relative;
-            max-width: 750px;
-            z-index: 2;
-        }
-        .eyebrow {
-            font-size: 10px;
-            letter-spacing: 4px;
-            color: var(--gold-light);
-            font-weight: 500;
-            margin-bottom: 25px;
-        }
-        .hero h1 {
-            font-family: var(--serif);
-            font-size: clamp(4.5rem, 8vw, 8rem);
-            font-weight: 400;
-            line-height: .85;
-            letter-spacing: -3px;
-            margin-bottom: 40px;
-        }
-        .hero h1 em,
-        h2 em {
-            font-style: italic;
-            color: var(--pink);
-        }
-        .hero-text {
-            max-width: 480px;
-            font-size: 14px;
-            line-height: 1.9;
-            color: rgba(255,255,255,.8);
-            margin-bottom: 40px;
-        }
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-        }
-        /* =====================================================
-           BOTÕES
-        ====================================================== */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 17px 30px;
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: var(--transition);
-        }
-        .btn-primary {
-            background: var(--gold);
-            color: var(--wine-dark);
-        }
-        .btn-primary:hover {
-            background: white;
-            transform: translateY(-3px);
-        }
-        .btn-outline {
-            border: 1px solid rgba(255,255,255,.5);
-            color: white;
-        }
-        .btn-outline:hover {
-            background: white;
-            color: var(--wine-dark);
-        }
-        /* SCROLL */
-        .hero-bottom {
-            position: absolute;
-            bottom: 40px;
-            left: 9vw;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 8px;
-            letter-spacing: 3px;
-            opacity: .7;
-        }
-        .scroll-line {
-            width: 60px;
-            height: 1px;
-            background: var(--gold);
-        }
-        /* =====================================================
-           SEÇÕES
-        ====================================================== */
-        .section {
-            padding: 130px 9vw;
-        }
-        h2 {
-            font-family: var(--serif);
-            font-size: clamp(3rem, 5vw, 5.5rem);
-            font-weight: 400;
-            line-height: .95;
-        }
-        h3 {
-            font-family: var(--serif);
-            font-size: 2rem;
-            font-weight: 500;
-        }
-        /* =====================================================
-           INTRO
-        ====================================================== */
-        .intro {
-            display: grid;
-            grid-template-columns: .7fr 1.3fr;
-            gap: 10vw;
-            background: var(--cream);
-        }
-        .intro-label {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            font-size: 9px;
-            letter-spacing: 3px;
-            color: var(--wine);
-        }
-        .intro-label div {
-            width: 1px;
-            height: 100px;
-            background: var(--gold);
-            margin-left: 3px;
-        }
-        .intro-content {
-            max-width: 700px;
-        }
-        .intro-content h2 {
-            margin-bottom: 35px;
-        }
-        .intro-content > p:not(.eyebrow) {
-            max-width: 550px;
-            font-size: 15px;
-            line-height: 2;
-            color: var(--gray);
-            margin-bottom: 35px;
-        }
-        .text-link {
-            color: var(--wine);
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--gold);
-            padding-bottom: 8px;
-        }
-        .text-link span {
-            color: var(--gold);
-            margin-left: 10px;
-        }
-        /* =====================================================
-           SOBRE
-        ====================================================== */
-        .about {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10vw;
-            align-items: center;
-            background: var(--pink-pale);
-        }
-        .about-image {
-            position: relative;
-            height: 650px;
-            background:
-                linear-gradient(
-                    145deg,
-                    #e4a0b2,
-                    #76203b
-                );
-        }
-        .about-image::after {
-            content: "ÉLIA";
-            position: absolute;
-            right: -45px;
-            bottom: 60px;
-            writing-mode: vertical-rl;
-            font-family: var(--serif);
-            font-size: 11px;
-            letter-spacing: 5px;
-            color: var(--wine);
-        }
-        .image-frame {
-            position: absolute;
-            inset: 25px;
-            border: 1px solid rgba(255,255,255,.45);
-        }
-        .about-badge {
-            position: absolute;
-            right: -50px;
-            top: 60px;
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--gold);
-            color: var(--wine-dark);
-        }
-        .about-badge strong {
-            font-family: var(--serif);
-            font-size: 35px;
-        }
-        .about-badge span {
-            font-size: 7px;
-            letter-spacing: 2px;
-            text-align: center;
-        }
-        .about-content h2 {
-            margin-bottom: 35px;
-        }
-        .about-content > p:not(.eyebrow) {
-            color: var(--gray);
-            line-height: 1.9;
-            max-width: 500px;
-            margin-bottom: 20px;
-        }
-        /* ESTATÍSTICAS */
-        .about-stats {
-            display: flex;
-            gap: 45px;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid var(--border);
-        }
-        .about-stats div {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-        }
-        .about-stats strong {
-            font-family: var(--serif);
-            color: var(--wine);
-            font-size: 2.3rem;
-            font-weight: 500;
-        }
-        .about-stats span {
-            font-size: 9px;
-            letter-spacing: 1px;
-            color: var(--gray);
-        }
-        /* =====================================================
-           SERVIÇOS
-        ====================================================== */
-        .services {
-            background: var(--cream);
-        }
-        .section-heading {
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-            margin-bottom: 70px;
-        }
-        .section-heading > p {
-            max-width: 300px;
-            font-size: 13px;
-            line-height: 1.8;
-            color: var(--gray);
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-        }
-        .service-card {
-            position: relative;
-            min-height: 330px;
-            padding: 40px;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-        .service-card:hover {
-            background: var(--pink-pale);
-            transform: translateY(-8px);
-            z-index: 2;
-            box-shadow: 0 20px 50px rgba(122,22,53,.08);
-        }
-        .service-card.featured {
-            background: var(--wine);
-            color: white;
-        }
-        .service-card.featured p {
-            color: rgba(255,255,255,.7);
-        }
-        .service-number {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            font-size: 9px;
-            color: var(--gold);
-        }
-        .service-icon {
-            color: var(--gold);
-            font-size: 22px;
-            margin-bottom: 70px;
-        }
-        .service-card h3 {
-            margin-bottom: 15px;
-        }
-        .service-card p {
-            color: var(--gray);
-            font-size: 12px;
-            line-height: 1.8;
-            max-width: 250px;
-        }
-        .service-arrow {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            color: var(--gold);
-            font-size: 20px;
-        }
-        /* =====================================================
-           EXPERIÊNCIA
-        ====================================================== */
-        .experience {
-            position: relative;
-            min-height: 700px;
-            display: flex;
-            align-items: center;
-            padding: 100px 9vw;
-            color: white;
-            background:
-                linear-gradient(
-                    rgba(67,13,32,.72),
-                    rgba(67,13,32,.9)
-                ),
-                linear-gradient(
-                    120deg,
-                    #d990a5,
-                    #541027
-                );
-        }
-        .experience-content {
-            position: relative;
-            max-width: 650px;
-        }
-        .experience h2 {
-            font-size: clamp(4rem, 7vw, 7rem);
-            margin-bottom: 30px;
-        }
-        .experience-content > p:not(.eyebrow) {
-            max-width: 450px;
-            line-height: 1.9;
-            color: rgba(255,255,255,.75);
-            margin-bottom: 40px;
-        }
-        /* =====================================================
-           GALERIA
-        ====================================================== */
-        .gallery {
-            background: var(--pink-pale);
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: 300px;
-            gap: 15px;
-        }
-        .gallery-item.large {
-            grid-column: span 2;
-        }
-        .gallery-placeholder {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-end;
-            padding: 25px;
-            background:
-                linear-gradient(
-                    135deg,
-                    #e8a7b8,
-                    #7b1737
-                );
-            transition: var(--transition);
-        }
-        .gallery-item:nth-child(2) .gallery-placeholder {
-            background:
-                linear-gradient(
-                    135deg,
-                    #f1c8d2,
-                    #a84b68
-                );
-        }
-        .gallery-item:nth-child(3) .gallery-placeholder {
-            background:
-                linear-gradient(
-                    135deg,
-                    #76203b,
-                    #d28b9e
-                );
-        }
-        .gallery-item:nth-child(4) .gallery-placeholder {
-            background:
-                linear-gradient(
-                    135deg,
-                    #d8b36a,
-                    #8b3b55
-                );
-        }
-        .gallery-item:nth-child(5) .gallery-placeholder {
-            background:
-                linear-gradient(
-                    135deg,
-                    #a24c68,
-                    #f1b5c6
-                );
-        }
-        .gallery-placeholder:hover {
-            transform: scale(.98);
-        }
-        .gallery-placeholder span {
-            font-family: var(--serif);
-            font-size: 30px;
-            color: rgba(255,255,255,.7);
-        }
-        /* =====================================================
-           FRASE
-        ====================================================== */
-        .quote {
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 100px 10vw;
-            background: var(--wine);
-            color: white;
-        }
-        .quote-symbol {
-            font-family: var(--serif);
-            font-size: 100px;
-            color: var(--gold);
-            line-height: .5;
-        }
-        blockquote {
-            max-width: 900px;
-            font-family: var(--serif);
-            font-size: clamp(2.5rem, 5vw, 5rem);
-            line-height: 1;
-            margin: 40px 0;
-        }
-        blockquote em {
-            color: var(--pink);
-        }
-        .quote > span {
-            font-size: 8px;
-            letter-spacing: 4px;
-            color: var(--gold-light);
-        }
-        /* =====================================================
-           AGENDAMENTO
-        ====================================================== */
-        .booking {
-            display: grid;
-            grid-template-columns: 1.3fr .7fr;
-            gap: 10vw;
-            background: var(--cream);
-        }
-        .booking-content h2 {
-            max-width: 700px;
-            margin-bottom: 30px;
-        }
-        .booking-content > p:not(.eyebrow) {
-            max-width: 450px;
-            color: var(--gray);
-            line-height: 1.9;
-            margin-bottom: 35px;
-        }
-        .booking-details {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            border-left: 1px solid var(--border);
-            padding-left: 50px;
-        }
-        .booking-details div {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .booking-details span {
-            color: var(--gold);
-            font-size: 9px;
-            letter-spacing: 3px;
-        }
-        .booking-details strong {
-            font-family: var(--serif);
-            font-size: 20px;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-        /* =====================================================
-           FOOTER
-        ====================================================== */
-        .footer {
-            padding: 70px 9vw 30px;
-            background: var(--wine-dark);
-            color: white;
-        }
-        .footer-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            padding-bottom: 70px;
-            border-bottom: 1px solid rgba(255,255,255,.12);
-        }
-        .footer-top p {
-            font-family: var(--serif);
-            font-size: 25px;
-            line-height: 1.1;
-            color: var(--pink);
-        }
-        .socials {
-            display: flex;
-            gap: 25px;
-        }
-        .socials a {
-            font-size: 10px;
-            letter-spacing: 1px;
-            color: var(--gold-light);
-        }
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            padding-top: 25px;
-            font-size: 8px;
-            letter-spacing: 1px;
-            opacity: .5;
-        }
-        /* =====================================================
-           MOBILE
-        ====================================================== */
-        @media (max-width: 900px) {
-            .header {
-                height: 80px;
-                padding: 0 6vw;
-            }
-            .nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                padding: 120px 40px;
-                flex-direction: column;
-                gap: 30px;
-                background: var(--wine-dark);
-                transition: .5s ease;
-            }
-            .nav.active {
-                right: 0;
-            }
-            .nav a {
-                font-family: var(--serif);
-                font-size: 28px;
-                letter-spacing: 0;
-            }
-            .header-button {
-                display: none;
-            }
-            .menu-button {
-                display: block;
-                position: relative;
-                z-index: 1001;
-            }
-            .menu-button.active span:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-            .menu-button.active span:nth-child(2) {
-                opacity: 0;
-            }
-            .menu-button.active span:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-            .hero {
-                padding: 120px 7vw 80px;
-                min-height: 100svh;
-            }
-            .hero h1 {
-                font-size: clamp(4rem, 18vw, 6rem);
-            }
-            .hero-buttons {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .section {
-                padding: 90px 7vw;
-            }
-            .intro {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-            .about {
-                grid-template-columns: 1fr;
-                gap: 70px;
-            }
-            .about-image {
-                height: 500px;
-            }
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .service-card {
-                min-height: 280px;
-            }
-            .section-heading {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 30px;
-            }
-            .gallery-grid {
-                grid-template-columns: 1fr 1fr;
-                grid-auto-rows: 250px;
-            }
-            .gallery-item.large {
-                grid-column: span 2;
-            }
-            .booking {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-            .booking-details {
-                border-left: none;
-                border-top: 1px solid var(--border);
-                padding-left: 0;
-                padding-top: 40px;
-            }
-            .footer-top {
-                flex-direction: column;
-                gap: 40px;
-            }
-        }
-        /* =====================================================
-           CELULAR PEQUENO
-        ====================================================== */
-        @media (max-width: 500px) {
-            .logo span {
-                font-size: 1.6rem;
-            }
-            .hero h1 {
-                letter-spacing: -2px;
-            }
-            .about-stats {
-                gap: 20px;
-            }
-            .about-stats strong {
-                font-size: 1.8rem;
-            }
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            .gallery-item.large {
-                grid-column: span 1;
-            }
-            .gallery-grid {
-                grid-auto-rows: 300px;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuhu — Restaurante & Cafeteria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Poppins:wght@200;300;400;500&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+  :root{
+    --bg:#FBF7F0;
+    --bg-2:#F3ECDF;
+    --white:#FFFFFF;
+    --brown-deep:#4A3527;
+    --brown:#8A6242;
+    --brown-soft:#B99373;
+    --text:#3A2E22;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Poppins', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:400;
+    letter-spacing:0.02em;
+    color:var(--brown-deep);
+  }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--brown);
+    opacity:0.9;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+  section{position:relative;}
+  ::selection{background:var(--brown-soft);color:var(--white);}
+
+  /* ---------- thread signature line ---------- */
+  #thread-wrap{
+    position:fixed; top:0; left:34px; width:1px; height:100vh;
+    z-index:40; display:flex; align-items:center; pointer-events:none;
+  }
+  #thread-track{ position:relative; width:1px; height:70vh; background:rgba(138,98,66,0.2); }
+  #thread-fill{
+    position:absolute; top:0; left:0; width:1px; height:0%;
+    background:linear-gradient(to bottom, var(--brown-soft), var(--brown-deep));
+  }
+  .thread-node{
+    position:absolute; left:50%; width:5px;height:5px;border-radius:50%;
+    background:var(--bg); border:1px solid var(--brown);
+    transform:translate(-50%,-50%); transition:background .4s ease;
+  }
+  .thread-node.lit{background:var(--brown-deep);}
+  @media (max-width:900px){ #thread-wrap{display:none;} }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed; top:0; left:0; width:100%; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:28px 6vw;
+    transition:padding .4s ease, background .4s ease, box-shadow .4s ease;
+  }
+  header.scrolled{
+    padding:16px 6vw;
+    background:rgba(251,247,240,0.88);
+    backdrop-filter:blur(10px);
+    box-shadow:0 1px 0 rgba(138,98,66,0.15);
+  }
+  header.on-dark .logo, header.on-dark nav a{ color:#fff; }
+  header.on-dark nav a::after{ background:#fff; }
+  .logo{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.5rem; letter-spacing:0.4em; font-weight:500; color:var(--brown-deep);
+    transition:color .4s ease;
+  }
+  nav ul{list-style:none;display:flex;gap:44px;}
+  nav a{
+    font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
+    font-weight:400; color:var(--brown-deep);
+    position:relative; padding-bottom:4px;
+    transition:color .4s ease;
+  }
+  nav a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--brown-deep);
+    transition:width .4s ease;
+  }
+  nav a:hover::after{width:100%;}
+  @media (max-width:820px){ nav ul{display:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    height:100vh; min-height:640px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; position:relative; overflow:hidden;
+  }
+  .hero-bg-image{
+    position:absolute; inset:0;
+    background:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1800&q=75') center/cover;
+    filter:saturate(0.85) brightness(1.02);
+  }
+  .hero-veil{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(251,247,240,0.35) 0%, rgba(251,247,240,0.55) 55%, var(--bg) 100%);
+  }
+  .hero-content{position:relative; z-index:2; padding:0 24px;}
+  .hero .eyebrow{display:block;margin-bottom:22px; color:var(--brown-deep);}
+  .hero h1{
+    font-size:clamp(4.2rem, 13vw, 9.5rem);
+    line-height:0.9; letter-spacing:0.06em; font-weight:300; color:var(--brown-deep);
+  }
+  .hero h1 span{display:inline-block;}
+  .hero-sub{
+    margin-top:26px; font-family:'Cormorant Garamond', serif; font-style:italic;
+    font-weight:400; font-size:clamp(1.05rem,2vw,1.4rem); color:var(--brown);
+  }
+  .hero-line{ width:1px; height:0; background:var(--brown-deep); margin:38px auto 0; }
+  .scroll-cue{
+    position:absolute; bottom:38px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:10px; z-index:2;
+  }
+  .scroll-cue .eyebrow{font-size:0.6rem;}
+  .scroll-cue .stick{
+    width:1px;height:44px;background:linear-gradient(180deg, var(--brown-deep), transparent);
+    animation:stick-move 2s ease-in-out infinite;
+  }
+  @keyframes stick-move{
+    0%{transform:scaleY(0.3);transform-origin:top;opacity:0.4;}
+    50%{transform:scaleY(1);transform-origin:top;opacity:1;}
+    100%{transform:scaleY(0.3);transform-origin:bottom;opacity:0.4;}
+  }
+
+  /* ---------- shared ---------- */
+  .wrap{max-width:1180px;margin:0 auto;padding:0 6vw;}
+  .section-pad{padding:170px 0;}
+  .reveal{opacity:0;transform:translateY(46px);}
+  .divider{width:60px;height:1px;background:var(--brown-deep);margin:26px 0;}
+  .divider.center{margin-left:auto;margin-right:auto;}
+
+  /* ---------- convite (invitation) ---------- */
+  .invite{ text-align:center; }
+  .invite-head{max-width:680px;margin:0 auto 80px;}
+  .invite-head h2{font-size:clamp(2.4rem,4.6vw,3.6rem); font-weight:400; line-height:1.2;}
+  .invite-head p{
+    margin-top:24px; font-size:1.02rem; line-height:1.9; color:rgba(58,46,34,0.75);
+    max-width:56ch; margin-left:auto; margin-right:auto;
+  }
+  .invite-photos{
+    display:grid; grid-template-columns:1.2fr 1fr 1fr; grid-template-rows:220px 220px; gap:18px;
+  }
+  .invite-photos .p1{grid-row:1/3;}
+  .invite-photos figure{overflow:hidden; position:relative;}
+  .invite-photos img{transition:transform 1s cubic-bezier(.2,.7,.2,1);}
+  .invite-photos figure:hover img{transform:scale(1.07);}
+  @media (max-width:900px){
+    .invite-photos{grid-template-columns:1fr 1fr; grid-template-rows:180px 180px 180px;}
+    .invite-photos .p1{grid-row:auto; grid-column:1/3; height:260px;}
+  }
+
+  /* ---------- story ---------- */
+  .story{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+  .story-copy h2{font-size:clamp(2.4rem,4.6vw,3.6rem); font-weight:400; line-height:1.15; margin-bottom:28px;}
+  .story-copy p{font-size:1rem; line-height:1.9; font-weight:300; color:rgba(58,46,34,0.75); max-width:46ch;}
+  .story-copy p + p{margin-top:18px;}
+  .story-image{position:relative; aspect-ratio:4/5; overflow:hidden;}
+  .story-image img{transform:scale(1.15); filter:saturate(0.95);}
+  .story-frame{position:absolute; inset:18px; border:1px solid var(--brown-deep); opacity:0.4; pointer-events:none;}
+  @media (max-width:900px){ .story{grid-template-columns:1fr;gap:44px;} }
+  .story.reverse .story-image{order:2;}
+  .story.reverse .story-copy{order:1;}
+  @media (max-width:900px){ .story.reverse .story-image, .story.reverse .story-copy{order:initial;} }
+
+  /* ================= SCROLLYTELLING SYSTEM ================= */
+  /* used by #cardapio and #ambiente: full-bleed sticky photo stage,
+     one photo crossfades into the next as the section scrolls past,
+     captions slide up only while their photo is active. */
+  .scrolly-intro{ text-align:center; max-width:640px; margin:0 auto; padding:170px 6vw 90px; }
+  .scrolly-intro h2{ font-size:clamp(2.4rem,4.5vw,3.4rem); font-weight:400; }
+  .scrolly-intro p{ margin-top:20px; color:rgba(58,46,34,0.7); line-height:1.8; }
+
+  .scrolly{ position:relative; background:#000; }
+  .scrolly-stage{
+    position:sticky; top:0; height:100vh; overflow:hidden;
+  }
+  .scrolly-item{
+    position:absolute; inset:0;
+    opacity:0; visibility:hidden;
+    transition:opacity 1.15s ease;
+  }
+  .scrolly-item.active{ opacity:1; visibility:visible; z-index:2; }
+  .scrolly-item .simg{ position:absolute; inset:0; overflow:hidden; }
+  .scrolly-item .simg img{
+    width:100%; height:100%; object-fit:cover;
+    filter:saturate(0.92) brightness(0.88);
+    transform:scale(1.02);
+    animation:kenburns 16s ease-in-out infinite alternate;
+    animation-play-state:paused;
+  }
+  .scrolly-item.active .simg img{ animation-play-state:running; }
+  @keyframes kenburns{
+    from{ transform:scale(1.02) translate(0,0); }
+    to{ transform:scale(1.16) translate(-1.5%, -1%); }
+  }
+  .scrolly-veil{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(20,14,9,0.05) 30%, rgba(20,14,9,0.72) 100%);
+  }
+  .scrolly-caption{
+    position:absolute; left:8vw; right:8vw; bottom:12vh; max-width:560px;
+    color:#fff; opacity:0; transform:translateY(46px);
+    transition:opacity .9s ease .2s, transform .9s cubic-bezier(.2,.8,.2,1) .2s;
+  }
+  .scrolly-item.active .scrolly-caption{ opacity:1; transform:translateY(0); }
+  .scrolly-caption .eyebrow{ color:#E7C79E; }
+  .scrolly-caption h3{
+    font-size:clamp(2.1rem,4.4vw,3.4rem); color:#fff; font-weight:400;
+    margin:14px 0 12px; line-height:1.1;
+  }
+  .scrolly-caption p{
+    font-size:0.95rem; line-height:1.75; color:rgba(255,255,255,0.82); max-width:44ch;
+  }
+  .scrolly-right .scrolly-caption{ left:auto; right:8vw; text-align:right; }
+  .scrolly-right .scrolly-caption p{ margin-left:auto; }
+
+  .scrolly-ticks{
+    position:absolute; right:5vw; top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; gap:14px; z-index:3;
+  }
+  .scrolly-ticks .tick{
+    width:5px; height:5px; border-radius:50%;
+    background:rgba(255,255,255,0.3);
+    transition:background .4s ease, transform .4s ease;
+  }
+  .scrolly-ticks .tick.lit{ background:#E7C79E; transform:scale(1.6); }
+  @media (max-width:820px){
+    .scrolly-caption{ left:7vw; right:7vw; bottom:9vh; }
+    .scrolly-right .scrolly-caption{ text-align:left; right:7vw; }
+    .scrolly-ticks{ display:none; }
+  }
+
+  /* ---------- visit / hours ---------- */
+  .visit{ background:var(--white); display:grid; grid-template-columns:1.1fr 1fr; }
+  .visit-image{position:relative; min-height:560px; overflow:hidden;}
+  .visit-image img{filter:saturate(0.95);}
+  .visit-copy{ display:flex; flex-direction:column; justify-content:center; padding:100px 7vw; }
+  .visit-copy h2{font-size:clamp(2.2rem,4vw,3rem); margin-bottom:36px; font-weight:400;}
+  .hours-table{width:100%; border-collapse:collapse; margin-bottom:44px;}
+  .hours-table tr{border-bottom:1px solid rgba(138,98,66,0.2);}
+  .hours-table td{padding:14px 0; font-size:0.92rem; font-weight:300;}
+  .hours-table td:first-child{
+    font-family:'Space Mono',monospace; font-size:0.7rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--brown);
+  }
+  .hours-table td:last-child{text-align:right;}
+  .addr{font-family:'Cormorant Garamond', serif; font-size:1.3rem; font-style:italic; color:var(--brown); line-height:1.6;}
+  .btn{
+    display:inline-flex; align-items:center; gap:14px; margin-top:40px;
+    font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase;
+    padding:16px 6px; border-bottom:1px solid var(--brown-deep); width:fit-content;
+    position:relative; overflow:hidden; color:var(--brown-deep);
+  }
+  .btn::before{
+    content:''; position:absolute; left:0; bottom:-1px; width:0; height:1px;
+    background:var(--brown); transition:width .4s ease;
+  }
+  .btn:hover::before{width:100%;}
+  @media (max-width:900px){ .visit{grid-template-columns:1fr;} .visit-image{min-height:340px;} }
+
+  /* ---------- footer ---------- */
+  footer{ padding:100px 6vw 50px; text-align:center; background:var(--bg-2); }
+  footer .logo{font-size:2rem; letter-spacing:0.5em; display:block; margin-bottom:26px;}
+  footer p{font-size:0.85rem; color:rgba(58,46,34,0.6); max-width:40ch; margin:0 auto 40px;}
+  .social-row{display:flex; justify-content:center; gap:34px; margin-bottom:60px;}
+  .social-row a{font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; position:relative; color:var(--brown-deep);}
+  .social-row a::after{
+    content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--brown-deep);
+    transition:width .35s ease;
+  }
+  .social-row a:hover::after{width:100%;}
+  .fine-print{ font-family:'Space Mono',monospace; font-size:0.65rem; letter-spacing:0.08em; color:rgba(58,46,34,0.4); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+    html{scroll-behavior:auto;}
+    .scrolly-item{ position:relative !important; opacity:1 !important; visibility:visible !important; height:100vh; }
+    .scrolly-stage{ position:relative !important; height:auto !important; }
+  }
+</style>
 </head>
 <body>
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
-    <header class="header" id="header">
-        <a href="#inicio" class="logo">
-            <span>ÉLIA</span>
-            <small>BEAUTY & HAIR</small>
-        </a>
-        <nav class="nav" id="nav">
-            <a href="#inicio">Início</a>
-            <a href="#sobre">Sobre</a>
-            <a href="#servicos">Serviços</a>
-            <a href="#experiencia">Experiência</a>
-            <a href="#galeria">Galeria</a>
-            <a href="#contato">Contato</a>
-        </nav>
-        <a href="#agendamento" class="header-button">
-            Agendar
-        </a>
-        <button
-            class="menu-button"
-            id="menuButton"
-            aria-label="Abrir menu"
-            aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </header>
-    <!-- =====================================================
-         CONTEÚDO
-    ====================================================== -->
-    <main>
-        <!-- HERO -->
-        <section class="hero" id="inicio">
-            <div class="hero-content">
-                <p class="eyebrow">
-                    BEAUTY • HAIR • EXPERIENCE
-                </p>
-                <h1>
-                    Sua beleza,<br>
-                    <em>elevada.</em>
-                </h1>
-                <p class="hero-text">
-                    Um espaço criado para transformar o cuidado
-                    com seus cabelos em uma experiência
-                    verdadeiramente extraordinária.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#agendamento" class="btn btn-primary">
-                        Agendar experiência
-                    </a>
-                    <a href="#servicos" class="btn btn-outline">
-                        Conhecer serviços
-                    </a>
-                </div>
-            </div>
-            <div class="hero-bottom">
-                <span>SCROLL TO EXPLORE</span>
-                <div class="scroll-line"></div>
-            </div>
-        </section>
-        <!-- INTRO -->
-        <section class="intro section">
-            <div class="intro-label">
-                <span>01</span>
-                <div></div>
-                <span>THE ÉLIA EXPERIENCE</span>
-            </div>
-            <div class="intro-content">
-                <p class="eyebrow">
-                    MAIS QUE UM SALÃO
-                </p>
-                <h2>
-                    Beleza com <em>personalidade.</em>
-                </h2>
-                <p>
-                    No ÉLIA, cada detalhe foi pensado para proporcionar
-                    uma experiência única. Unimos técnica, estética
-                    e cuidado para criar resultados que valorizam
-                    a identidade de cada mulher.
-                </p>
-                <a href="#sobre" class="text-link">
-                    Descubra nossa história
-                    <span>↗</span>
-                </a>
-            </div>
-        </section>
-        <!-- SOBRE -->
-        <section class="about section" id="sobre">
-            <div class="about-image">
-                <div class="image-frame"></div>
-                <div class="about-badge">
-                    <strong>É</strong>
-                    <span>
-                        BEAUTY<br>
-                        STUDIO
-                    </span>
-                </div>
-            </div>
-            <div class="about-content">
-                <p class="eyebrow">
-                    NOSSO CONCEITO
-                </p>
-                <h2>
-                    Onde o luxo encontra
-                    <em>a naturalidade.</em>
-                </h2>
-                <p>
-                    Acreditamos que beleza não precisa ser exagerada.
-                    Ela precisa revelar aquilo que torna você única.
-                </p>
-                <p>
-                    Por isso, nosso trabalho combina técnicas
-                    contemporâneas, produtos selecionados e um olhar
-                    personalizado para cada cliente.
-                </p>
-                <div class="about-stats">
-                    <div>
-                        <strong>08+</strong>
-                        <span>Anos de experiência</span>
-                    </div>
-                    <div>
-                        <strong>2K+</strong>
-                        <span>Clientes atendidas</span>
-                    </div>
-                    <div>
-                        <strong>15</strong>
-                        <span>Especialidades</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- SERVIÇOS -->
-        <section class="services section" id="servicos">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow">
-                        02 / SERVIÇOS
-                    </p>
-                    <h2>
-                        Nossos <em>rituais</em>
-                    </h2>
-                </div>
-                <p>
-                    Serviços desenvolvidos para cuidar,
-                    transformar e valorizar sua beleza.
-                </p>
-            </div>
-            <div class="services-grid">
-                <article class="service-card">
-                    <span class="service-number">01</span>
-                    <div class="service-icon">✦</div>
-                    <h3>Corte & Styling</h3>
-                    <p>
-                        Cortes personalizados e finalizações
-                        que respeitam seu estilo.
-                    </p>
-                    <span class="service-arrow">↗</span>
-                </article>
-                <article class="service-card featured">
-                    <span class="service-number">02</span>
-                    <div class="service-icon">✦</div>
-                    <h3>Coloração</h3>
-                    <p>
-                        Cores sofisticadas, luminosidade e
-                        técnicas personalizadas.
-                    </p>
-                    <span class="service-arrow">↗</span>
-                </article>
-                <article class="service-card">
-                    <span class="service-number">03</span>
-                    <div class="service-icon">✦</div>
-                    <h3>Mechas & Balayage</h3>
-                    <p>
-                        Iluminação natural e dimensão
-                        cuidadosamente construída.
-                    </p>
-                    <span class="service-arrow">↗</span>
-                </article>
-                <article class="service-card">
-                    <span class="service-number">04</span>
-                    <div class="service-icon">✦</div>
-                    <h3>Tratamentos</h3>
-                    <p>
-                        Protocolos exclusivos para recuperar
-                        força, brilho e movimento.
-                    </p>
-                    <span class="service-arrow">↗</span>
-                </article>
-                <article class="service-card">
-                    <span class="service-number">05</span>
-                    <div class="service-icon">✦</div>
-                    <h3>Escova</h3>
-                    <p>
-                        Finalização impecável para todos
-                        os momentos.
-                    </p>
-                    <span class="service-arrow">↗</span>
-                </article>
-                <article class="service-card">
-                    <span class="service-number">06</span>
-                    <div class="service-icon">✦</div>
-                    <h3>Penteados</h3>
-                    <p>
-                        Produções especiais para eventos
-                        e ocasiões inesquecíveis.
-                    </p>
-                    <span class="service-arrow">↗</span>
-                </article>
-            </div>
-        </section>
-        <!-- EXPERIÊNCIA -->
-        <section class="experience" id="experiencia">
-            <div class="experience-content">
-                <p class="eyebrow">
-                    THE SIGNATURE EXPERIENCE
-                </p>
-                <h2>
-                    Um momento<br>
-                    <em>só seu.</em>
-                </h2>
-                <p>
-                    Uma experiência completa de beleza,
-                    criada para você desacelerar e simplesmente
-                    aproveitar o momento.
-                </p>
-                <a href="#agendamento" class="btn btn-primary">
-                    Conhecer experiência
-                </a>
-            </div>
-        </section>
-        <!-- GALERIA -->
-        <section class="gallery section" id="galeria">
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow">
-                        03 / PORTFÓLIO
-                    </p>
-                    <h2>
-                        Nossa <em>arte</em>
-                    </h2>
-                </div>
-                <p>
-                    Alguns dos trabalhos que representam
-                    nossa identidade.
-                </p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item large">
-                    <div class="gallery-placeholder">
-                        <span>01</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <span>02</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <span>03</span>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <span>04</span>
-                    </div>
-                </div>
-                <div class="gallery-item large">
-                    <div class="gallery-placeholder">
-                        <span>05</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- FRASE -->
-        <section class="quote">
-            <div class="quote-symbol">
-                “
-            </div>
-            <blockquote>
-                A verdadeira beleza começa
-                quando você se sente
-                <em>você mesma.</em>
-            </blockquote>
-            <span>
-                ÉLIA BEAUTY & HAIR
-            </span>
-        </section>
-        <!-- AGENDAMENTO -->
-        <section class="booking section" id="agendamento">
-            <div class="booking-content">
-                <p class="eyebrow">
-                    04 / AGENDAMENTO
-                </p>
-                <h2>
-                    Seu próximo momento
-                    <em>começa aqui.</em>
-                </h2>
-                <p>
-                    Escolha seu serviço e venha viver
-                    uma experiência ÉLIA.
-                </p>
-                <a href="#" class="btn btn-primary">
-                    Agendar pelo WhatsApp
-                </a>
-            </div>
-            <div class="booking-details">
-                <div>
-                    <span>ENDEREÇO</span>
-                    <strong>
-                        Rua Example, 000<br>
-                        São Paulo — SP
-                    </strong>
-                </div>
-                <div>
-                    <span>HORÁRIOS</span>
-                    <strong>
-                        Ter — Sex · 09h — 20h<br>
-                        Sáb · 09h — 18h
-                    </strong>
-                </div>
-                <div>
-                    <span>CONTATO</span>
-                    <strong>
-                        (11) 99999-9999<br>
-                        @eliabeauty
-                    </strong>
-                </div>
-            </div>
-        </section>
-    </main>
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-    <footer class="footer" id="contato">
-        <div class="footer-top">
-            <a href="#inicio" class="logo">
-                <span>ÉLIA</span>
-                <small>
-                    BEAUTY & HAIR
-                </small>
-            </a>
-            <p>
-                Beleza, sofisticação<br>
-                e personalidade.
-            </p>
-            <div class="socials">
-                <a href="#">
-                    Instagram
-                </a>
-                <a href="#">
-                    WhatsApp
-                </a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span>
-                © 2026 ÉLIA Beauty & Hair
-            </span>
-            <span>
-                Designed with intention.
-            </span>
-        </div>
-    </footer>
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
-    <script>
-        const header = document.getElementById("header");
-        const menuButton = document.getElementById("menuButton");
-        const nav = document.getElementById("nav");
-        /* HEADER AO ROLAR */
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
-        });
-        /* MENU MOBILE */
-        menuButton.addEventListener("click", () => {
-            const isOpen =
-                menuButton.classList.toggle("active");
-            nav.classList.toggle("active");
-            menuButton.setAttribute(
-                "aria-expanded",
-                isOpen
-            );
-        });
-        /* FECHAR MENU */
-        document.querySelectorAll(".nav a").forEach(link => {
-            link.addEventListener("click", () => {
-                menuButton.classList.remove("active");
-                nav.classList.remove("active");
-                menuButton.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-            });
-        });
-    </script>
+
+<div id="thread-wrap">
+  <div id="thread-track"><div id="thread-fill"></div></div>
+</div>
+
+<header id="siteHeader">
+  <div class="logo">TUHU</div>
+  <nav>
+    <ul>
+      <li><a href="#historia">História</a></li>
+      <li><a href="#cardapio">Cardápio</a></li>
+      <li><a href="#ambiente">Ambiente</a></li>
+      <li><a href="#visitar">Visitar</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg-image"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-content">
+    <span class="eyebrow" id="heroEyebrow">Restaurante & Cafeteria</span>
+    <h1 id="heroTitle"><span>T</span><span>u</span><span>h</span><span>u</span></h1>
+    <p class="hero-sub" id="heroSub">um convite para ficar um pouco</p>
+    <div class="hero-line" id="heroLine"></div>
+  </div>
+  <div class="scroll-cue">
+    <span class="eyebrow">Role</span>
+    <div class="stick"></div>
+  </div>
+</section>
+
+<section class="section-pad invite">
+  <div class="wrap">
+    <div class="invite-head reveal">
+      <span class="eyebrow">Um convite</span>
+      <div class="divider center"></div>
+      <h2 class="serif">Venha para o café da manhã.<br>Fique para o jantar.</h2>
+      <p>Tuhu é uma casa aberta desde cedo — para quem chega em busca de um café bem tirado — e até tarde, para quem procura uma mesa tranquila e uma boa conversa. Sem pressa, sem cerimônia.</p>
+    </div>
+    <div class="invite-photos reveal">
+      <figure class="p1"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=75" alt="Salão do Tuhu"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=75" alt="Café servido no Tuhu"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=75" alt="Grãos de café"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=75" alt="Mesa posta"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=700&q=75" alt="Latte art"></figure>
+    </div>
+  </div>
+</section>
+
+<section id="historia" class="section-pad">
+  <div class="wrap story">
+    <div class="story-image reveal">
+      <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1000&q=75" alt="Interior aconchegante da cafeteria Tuhu">
+      <div class="story-frame"></div>
+    </div>
+    <div class="story-copy reveal">
+      <span class="eyebrow">Nossa história</span>
+      <h2 class="serif">Tuhu significa sincero —<br> é assim que recebemos</h2>
+      <p>Nascemos de uma mesa de família e de uma prensa de café que nunca desligava. Tuhu junta o ritual da cafeteria matinal ao tempo mais lento de um jantar bem servido, sob o mesmo teto.</p>
+      <p>Cada prato carrega uma escolha simples: ingredientes de estação, técnica sem pressa e uma mesa onde o silêncio também é bem-vindo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="wrap story reverse">
+    <div class="story-image reveal">
+      <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=1000&q=75" alt="Cozinha aberta do Tuhu">
+      <div class="story-frame"></div>
+    </div>
+    <div class="story-copy reveal">
+      <span class="eyebrow">Cozinha aberta</span>
+      <h2 class="serif">Tudo feito à vista,<br>sem pressa</h2>
+      <p>Do pão que sai do forno às primeiras horas ao molho que cozinha por seis horas, gostamos que se veja o trabalho por trás de cada prato. A cozinha aberta é nosso convite silencioso.</p>
+    </div>
+  </div>
+</section>
+
+<div class="scrolly-intro reveal">
+  <span class="eyebrow">O cardápio</span>
+  <div class="divider center"></div>
+  <h2 class="serif">Alguns dos nossos favoritos</h2>
+  <p>Um gostinho do que preparamos — role para conhecer, o cardápio completo espera por você à mesa.</p>
+</div>
+
+<section id="cardapio" class="scrolly" data-dark-header>
+  <div class="scrolly-stage">
+    <div class="scrolly-item active">
+      <div class="simg"><img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=1400&q=75" alt="Risoto de cogumelos"></div>
+      <div class="scrolly-veil"></div>
+      <div class="scrolly-caption">
+        <span class="eyebrow">Prato principal</span>
+        <h3 class="serif">Risoto de Cogumelos</h3>
+        <p>Funghi selvagem, manteiga de ervas e parmesão curado, mexido devagar até ficar cremoso.</p>
+      </div>
+    </div>
+    <div class="scrolly-item scrolly-right">
+      <div class="simg"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1400&q=75" alt="Robalo grelhado"></div>
+      <div class="scrolly-veil"></div>
+      <div class="scrolly-caption">
+        <span class="eyebrow">Prato principal</span>
+        <h3 class="serif">Robalo Grelhado</h3>
+        <p>Pele crocante, purê de mandioquinha e manteiga de limão-siciliano.</p>
+      </div>
+    </div>
+    <div class="scrolly-item">
+      <div class="simg"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1400&q=75" alt="Tagliatelle fresca"></div>
+      <div class="scrolly-veil"></div>
+      <div class="scrolly-caption">
+        <span class="eyebrow">Massa fresca</span>
+        <h3 class="serif">Tagliatelle Tuhu</h3>
+        <p>Massa feita na casa, com um ragu que cozinha devagar por seis horas.</p>
+      </div>
+    </div>
+    <div class="scrolly-item scrolly-right">
+      <div class="simg"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1400&q=75" alt="Croissant de manteiga"></div>
+      <div class="scrolly-veil"></div>
+      <div class="scrolly-caption">
+        <span class="eyebrow">Da padaria</span>
+        <h3 class="serif">Croissant de Manteiga</h3>
+        <p>Fermentação de 48 horas, folhado e dourado bem na hora.</p>
+      </div>
+    </div>
+    <div class="scrolly-item">
+      <div class="simg"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=1400&q=75" alt="Flat white"></div>
+      <div class="scrolly-veil"></div>
+      <div class="scrolly-caption">
+        <span class="eyebrow">Da cafeteria</span>
+        <h3 class="serif">Flat White de Aveia</h3>
+        <p>Extração dupla, leite de aveia vaporizado devagar.</p>
+      </div>
+    </div>
+    <div class="scrolly-item scrolly-right">
+      <div class="simg"><img src="https://images.unsplash.com/photo-1464347744102-11db6282f854?auto=format&fit=crop&w=1400&q=75" alt="Tarte tatin"></div>
+      <div class="scrolly-veil"></div>
+      <div class="scrolly-caption">
+        <span class="eyebrow">Sobremesa</span>
+        <h3 class="serif">Tarte Tatin</h3>
+        <p>Maçãs caramelizadas viradas na hora, com creme de baunilha fresco.</p>
+      </div>
+    </div>
+    <div class="scrolly-ticks"></div>
+  </div>
+</section>
+
+<div class="scrolly-intro reveal">
+  <span class="eyebrow">O ambiente</span>
+  <div class="divider center"></div>
+  <h2 class="serif">Um lugar para ficar</h2>
+</div>
+
+<section id="ambiente" class="scrolly" data-dark-header>
+  <div class="scrolly-stage">
+    <div class="scrolly-item active">
+      <div class="simg"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1400&q=75" alt="Salão do restaurante Tuhu"></div>
+      <div class="scrolly-veil"></div>
+      <div class="scrolly-caption">
+        <span class="eyebrow">Salão</span>
+        <h3 class="serif">Onde as mesas se enchem</h3>
+        <p>Luz baixa, madeira clara e um burburinho que nunca é alto demais.</p>
+      </div>
+    </div>
+    <div class="scrolly-item scrolly-right">
+      <div class="simg"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1400&q=75" alt="Balcão de café"></div>
+      <div class="scrolly-veil"></div>
+      <div class="scrolly-caption">
+        <span class="eyebrow">Balcão</span>
+        <h3 class="serif">O primeiro café do dia</h3>
+        <p>O barista já está lá antes de você — o aroma chega primeiro.</p>
+      </div>
+    </div>
+    <div class="scrolly-item">
+      <div class="simg"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=75" alt="Grãos de café selecionados"></div>
+      <div class="scrolly-veil"></div>
+      <div class="scrolly-caption">
+        <span class="eyebrow">Grãos</span>
+        <h3 class="serif">Torrados com paciência</h3>
+        <p>Selecionados um a um, torrados em pequenos lotes semanais.</p>
+      </div>
+    </div>
+    <div class="scrolly-item scrolly-right">
+      <div class="simg"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=75" alt="Mesa posta ao entardecer"></div>
+      <div class="scrolly-veil"></div>
+      <div class="scrolly-caption">
+        <span class="eyebrow">Mesa</span>
+        <h3 class="serif">Posta ao entardecer</h3>
+        <p>Velas baixas, guardanapo de linho, o dia desacelerando.</p>
+      </div>
+    </div>
+    <div class="scrolly-item">
+      <div class="simg"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=1400&q=75" alt="Cozinha aberta"></div>
+      <div class="scrolly-veil"></div>
+      <div class="scrolly-caption">
+        <span class="eyebrow">Cozinha</span>
+        <h3 class="serif">Aberta, à vista de todos</h3>
+        <p>Nada escondido — só o cheiro bom chegando até a mesa.</p>
+      </div>
+    </div>
+    <div class="scrolly-item scrolly-right">
+      <div class="simg"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1400&q=75" alt="Cantinho de leitura junto à janela"></div>
+      <div class="scrolly-veil"></div>
+      <div class="scrolly-caption">
+        <span class="eyebrow">Janela</span>
+        <h3 class="serif">Um canto para ficar</h3>
+        <p>Luz natural, um livro, um café que esfria devagar demais.</p>
+      </div>
+    </div>
+    <div class="scrolly-ticks"></div>
+  </div>
+</section>
+
+<section id="visitar" class="visit">
+  <div class="visit-image reveal">
+    <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&w=1000&q=75" alt="Fachada do Tuhu ao entardecer">
+  </div>
+  <div class="visit-copy reveal">
+    <span class="eyebrow">Visitar</span>
+    <h2 class="serif">Reserve sua mesa,<br>ou apenas apareça</h2>
+    <table class="hours-table">
+      <tr><td>Seg – Sex</td><td>07h às 22h</td></tr>
+      <tr><td>Sáb</td><td>08h às 23h</td></tr>
+      <tr><td>Dom</td><td>08h às 17h</td></tr>
+    </table>
+    <p class="addr">Rua das Palmeiras, 214<br>Jardim Botânico</p>
+    <a href="#" class="btn">Reservar uma mesa →</a>
+  </div>
+</section>
+
+<footer>
+  <span class="logo serif">TUHU</span>
+  <p>Restaurante & cafeteria. Um convite sincero, todos os dias da semana.</p>
+  <div class="social-row">
+    <a href="#">Instagram</a>
+    <a href="#">WhatsApp</a>
+    <a href="#">E-mail</a>
+  </div>
+  <span class="fine-print">© 2026 TUHU — todos os direitos reservados</span>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const header = document.getElementById('siteHeader');
+const darkSections = document.querySelectorAll('[data-dark-header]');
+
+function updateHeaderState(){
+  header.classList.toggle('scrolled', window.scrollY > 80);
+  let onDark = false;
+  darkSections.forEach(sec => {
+    const r = sec.getBoundingClientRect();
+    if(r.top < 90 && r.bottom > 90) onDark = true;
+  });
+  header.classList.toggle('on-dark', onDark);
+}
+window.addEventListener('scroll', updateHeaderState, {passive:true});
+updateHeaderState();
+
+const tl = gsap.timeline({defaults:{ease:'power3.out'}});
+tl.from('#heroEyebrow', {opacity:0, y:14, duration:0.7})
+  .from('.hero h1 span', {opacity:0, y:70, stagger:0.09, duration:1.1}, '-=0.3')
+  .from('#heroSub', {opacity:0, y:14, duration:0.8}, '-=0.5')
+  .to('#heroLine', {height:64, duration:0.9}, '-=0.4');
+
+document.querySelectorAll('.reveal').forEach((el) => {
+  gsap.to(el, {
+    opacity:1, y:0, duration:1.1, ease:'power2.out',
+    scrollTrigger:{ trigger: el, start:'top 85%' }
+  });
+});
+
+gsap.to('.story-image img', {
+  scale:1, ease:'none',
+  scrollTrigger:{ trigger:'.story-image', start:'top bottom', end:'bottom top', scrub:1 }
+});
+
+/* ---------- scrollytelling engine ---------- */
+function setupScrolly(section){
+  const items = section.querySelectorAll('.scrolly-item');
+  const ticksHost = section.querySelector('.scrolly-ticks');
+  const count = items.length;
+
+  items.forEach((_, i) => {
+    const t = document.createElement('div');
+    t.className = 'tick' + (i === 0 ? ' lit' : '');
+    ticksHost.appendChild(t);
+  });
+  const ticks = ticksHost.querySelectorAll('.tick');
+
+  section.style.height = (count * 100) + 'vh';
+
+  let activeIndex = 0;
+  function update(){
+    const rect = section.getBoundingClientRect();
+    const total = rect.height - window.innerHeight;
+    let progress = total > 0 ? (-rect.top) / total : 0;
+    progress = Math.min(1, Math.max(0, progress));
+    let idx = Math.floor(progress * count);
+    if (idx >= count) idx = count - 1;
+    if (idx !== activeIndex || rect.top > window.innerHeight || rect.bottom < 0) {
+      activeIndex = idx;
+      items.forEach((it, i) => it.classList.toggle('active', i === idx));
+      ticks.forEach((t, i) => t.classList.toggle('lit', i === idx));
+    }
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+}
+document.querySelectorAll('.scrolly').forEach(setupScrolly);
+
+/* ---------- thread progress line ---------- */
+const fill = document.getElementById('thread-fill');
+const nodesHost = document.getElementById('thread-track');
+const sectionIds = ['historia','cardapio','ambiente','visitar'];
+sectionIds.forEach((id, i) => {
+  const n = document.createElement('div');
+  n.className = 'thread-node';
+  n.style.top = ((i+1) / (sectionIds.length+1) * 100) + '%';
+  nodesHost.appendChild(n);
+});
+function updateThread(){
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop / (doc.scrollHeight - doc.clientHeight);
+  const pct = Math.min(100, Math.max(0, scrolled * 100));
+  fill.style.height = pct + '%';
+  document.querySelectorAll('.thread-node').forEach(n => {
+    const nodeTop = parseFloat(n.style.top);
+    n.classList.toggle('lit', pct >= nodeTop);
+  });
+}
+window.addEventListener('scroll', updateThread, {passive:true});
+updateThread();
+</script>
 </body>
 </html>
