@@ -5,7 +5,7 @@
 
 
 /* ================= VARIABLES ================= */
-
+<style>
 :root {
 
     --pink: #e9a7b7;
@@ -1664,3 +1664,5 @@ blockquote em {
     }
 
 }
+
+<style/>
