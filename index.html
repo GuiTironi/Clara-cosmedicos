@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉLIA — Beauty & Hair</title>
+    <meta name="description"
+        content="ÉLIA Beauty & Hair — Beleza, sofisticação e experiências exclusivas para seus cabelos.">
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- =====================================================
+         CSS
+    ====================================================== -->
+    <style>
+        /* =====================================================
+           VARIÁVEIS
+        ====================================================== */
+        :root {
+            --pink: #e9a7b7;
+            --pink-light: #f8dce3;
+            --pink-pale: #fff5f7;
+            --wine: #7a1635;
+            --wine-dark: #430d20;
+            --gold: #d8b36a;
+            --gold-light: #ecd7a4;
+            --cream: #fffaf8;
+            --white: #ffffff;
+            --black: #1c1014;
+            --gray: #756a6d;
+            --border: rgba(122, 22, 53, 0.15);
+            --serif: "Cormorant Garamond", serif;
+            --sans: "DM Sans", sans-serif;
+            --transition: 0.4s ease;
+        }
+        /* =====================================================
+           RESET
+        ====================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: var(--cream);
+            color: var(--black);
+            font-family: var(--sans);
+            overflow-x: hidden;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        button {
+            font-family: inherit;
+        }
+        /* =====================================================
+           HEADER
+        ====================================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 95px;
+            padding: 0 6vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            color: white;
+            transition: var(--transition);
+        }
+        .header.scrolled {
+            height: 75px;
+            background: rgba(67, 13, 32, 0.95);
+            backdrop-filter: blur(15px);
+        }
+        /* LOGO */
+        .logo {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+        .logo span {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+        }
+        .logo small {
+            margin-top: 5px;
+            font-size: 7px;
+            letter-spacing: 3px;
+            text-align: center;
+            opacity: .8;
+        }
+        /* =====================================================
+           MENU
+        ====================================================== */
+        .nav {
+            display: flex;
+            gap: 35px;
+        }
+        .nav a {
+            position: relative;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: .85;
+            transition: var(--transition);
+        }
+        .nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+        .nav a:hover {
+            color: var(--gold-light);
+        }
+        .nav a:hover::after {
+            width: 100%;
+        }
+        /* BOTÃO AGENDAR */
+        .header-button {
+            border: 1px solid rgba(255,255,255,.5);
+            padding: 13px 25px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+        .header-button:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--wine-dark);
+        }
+        /* MENU MOBILE */
+        .menu-button {
+            display: none;
+            background: none;
+            border: none;
+            width: 35px;
+            cursor: pointer;
+        }
+        .menu-button span {
+            display: block;
+            height: 1px;
+            background: white;
+            margin: 7px 0;
+            transition: .3s;
+        }
+        /* =====================================================
+           HERO
+        ====================================================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 9vw;
+            color: white;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(67,13,32,.95) 0%,
+                    rgba(67,13,32,.65) 45%,
+                    rgba(67,13,32,.15) 100%
+                ),
+                linear-gradient(
+                    120deg,
+                    #8e294b,
+                    #d990a5
+                );
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            right: -150px;
+            top: -150px;
+            border-radius: 50%;
+            border: 1px solid rgba(216,179,106,.4);
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            right: 50px;
+            bottom: -180px;
+            border-radius: 50%;
+            border: 1px solid rgba(216,179,106,.25);
+        }
+        .hero-content {
+            position: relative;
+            max-width: 750px;
+            z-index: 2;
+        }
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: 4px;
+            color: var(--gold-light);
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(4.5rem, 8vw, 8rem);
+            font-weight: 400;
+            line-height: .85;
+            letter-spacing: -3px;
+            margin-bottom: 40px;
+        }
+        .hero h1 em,
+        h2 em {
+            font-style: italic;
+            color: var(--pink);
+        }
+        .hero-text {
+            max-width: 480px;
+            font-size: 14px;
+            line-height: 1.9;
+            color: rgba(255,255,255,.8);
+            margin-bottom: 40px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        /* =====================================================
+           BOTÕES
+        ====================================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 17px 30px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+        .btn-primary {
+            background: var(--gold);
+            color: var(--wine-dark);
+        }
+        .btn-primary:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,.5);
+            color: white;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: var(--wine-dark);
+        }
+        /* SCROLL */
+        .hero-bottom {
+            position: absolute;
+            bottom: 40px;
+            left: 9vw;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 8px;
+            letter-spacing: 3px;
+            opacity: .7;
+        }
+        .scroll-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+        }
+        /* =====================================================
+           SEÇÕES
+        ====================================================== */
+        .section {
+            padding: 130px 9vw;
+        }
+        h2 {
+            font-family: var(--serif);
+            font-size: clamp(3rem, 5vw, 5.5rem);
+            font-weight: 400;
+            line-height: .95;
+        }
+        h3 {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 500;
+        }
+        /* =====================================================
+           INTRO
+        ====================================================== */
+        .intro {
+            display: grid;
+            grid-template-columns: .7fr 1.3fr;
+            gap: 10vw;
+            background: var(--cream);
+        }
+        .intro-label {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: var(--wine);
+        }
+        .intro-label div {
+            width: 1px;
+            height: 100px;
+            background: var(--gold);
+            margin-left: 3px;
+        }
+        .intro-content {
+            max-width: 700px;
+        }
+        .intro-content h2 {
+            margin-bottom: 35px;
+        }
+        .intro-content > p:not(.eyebrow) {
+            max-width: 550px;
+            font-size: 15px;
+            line-height: 2;
+            color: var(--gray);
+            margin-bottom: 35px;
+        }
+        .text-link {
+            color: var(--wine);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 8px;
+        }
+        .text-link span {
+            color: var(--gold);
+            margin-left: 10px;
+        }
+        /* =====================================================
+           SOBRE
+        ====================================================== */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10vw;
+            align-items: center;
+            background: var(--pink-pale);
+        }
+        .about-image {
+            position: relative;
+            height: 650px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #e4a0b2,
+                    #76203b
+                );
+        }
+        .about-image::after {
+            content: "ÉLIA";
+            position: absolute;
+            right: -45px;
+            bottom: 60px;
+            writing-mode: vertical-rl;
+            font-family: var(--serif);
+            font-size: 11px;
+            letter-spacing: 5px;
+            color: var(--wine);
+        }
+        .image-frame {
+            position: absolute;
+            inset: 25px;
+            border: 1px solid rgba(255,255,255,.45);
+        }
+        .about-badge {
+            position: absolute;
+            right: -50px;
+            top: 60px;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--gold);
+            color: var(--wine-dark);
+        }
+        .about-badge strong {
+            font-family: var(--serif);
+            font-size: 35px;
+        }
+        .about-badge span {
+            font-size: 7px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        .about-content h2 {
+            margin-bottom: 35px;
+        }
+        .about-content > p:not(.eyebrow) {
+            color: var(--gray);
+            line-height: 1.9;
+            max-width: 500px;
+            margin-bottom: 20px;
+        }
+        /* ESTATÍSTICAS */
+        .about-stats {
+            display: flex;
+            gap: 45px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+        .about-stats div {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+        .about-stats strong {
+            font-family: var(--serif);
+            color: var(--wine);
+            font-size: 2.3rem;
+            font-weight: 500;
+        }
+        .about-stats span {
+            font-size: 9px;
+            letter-spacing: 1px;
+            color: var(--gray);
+        }
+        /* =====================================================
+           SERVIÇOS
+        ====================================================== */
+        .services {
+            background: var(--cream);
+        }
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            margin-bottom: 70px;
+        }
+        .section-heading > p {
+            max-width: 300px;
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .service-card {
+            position: relative;
+            min-height: 330px;
+            padding: 40px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        .service-card:hover {
+            background: var(--pink-pale);
+            transform: translateY(-8px);
+            z-index: 2;
+            box-shadow: 0 20px 50px rgba(122,22,53,.08);
+        }
+        .service-card.featured {
+            background: var(--wine);
+            color: white;
+        }
+        .service-card.featured p {
+            color: rgba(255,255,255,.7);
+        }
+        .service-number {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 9px;
+            color: var(--gold);
+        }
+        .service-icon {
+            color: var(--gold);
+            font-size: 22px;
+            margin-bottom: 70px;
+        }
+        .service-card h3 {
+            margin-bottom: 15px;
+        }
+        .service-card p {
+            color: var(--gray);
+            font-size: 12px;
+            line-height: 1.8;
+            max-width: 250px;
+        }
+        .service-arrow {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            color: var(--gold);
+            font-size: 20px;
+        }
+        /* =====================================================
+           EXPERIÊNCIA
+        ====================================================== */
+        .experience {
+            position: relative;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            padding: 100px 9vw;
+            color: white;
+            background:
+                linear-gradient(
+                    rgba(67,13,32,.72),
+                    rgba(67,13,32,.9)
+                ),
+                linear-gradient(
+                    120deg,
+                    #d990a5,
+                    #541027
+                );
+        }
+        .experience-content {
+            position: relative;
+            max-width: 650px;
+        }
+        .experience h2 {
+            font-size: clamp(4rem, 7vw, 7rem);
+            margin-bottom: 30px;
+        }
+        .experience-content > p:not(.eyebrow) {
+            max-width: 450px;
+            line-height: 1.9;
+            color: rgba(255,255,255,.75);
+            margin-bottom: 40px;
+        }
+        /* =====================================================
+           GALERIA
+        ====================================================== */
+        .gallery {
+            background: var(--pink-pale);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 300px;
+            gap: 15px;
+        }
+        .gallery-item.large {
+            grid-column: span 2;
+        }
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 25px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #e8a7b8,
+                    #7b1737
+                );
+            transition: var(--transition);
+        }
+        .gallery-item:nth-child(2) .gallery-placeholder {
+            background:
+                linear-gradient(
+                    135deg,
+                    #f1c8d2,
+                    #a84b68
+                );
+        }
+        .gallery-item:nth-child(3) .gallery-placeholder {
+            background:
+                linear-gradient(
+                    135deg,
+                    #76203b,
+                    #d28b9e
+                );
+        }
+        .gallery-item:nth-child(4) .gallery-placeholder {
+            background:
+                linear-gradient(
+                    135deg,
+                    #d8b36a,
+                    #8b3b55
+                );
+        }
+        .gallery-item:nth-child(5) .gallery-placeholder {
+            background:
+                linear-gradient(
+                    135deg,
+                    #a24c68,
+                    #f1b5c6
+                );
+        }
+        .gallery-placeholder:hover {
+            transform: scale(.98);
+        }
+        .gallery-placeholder span {
+            font-family: var(--serif);
+            font-size: 30px;
+            color: rgba(255,255,255,.7);
+        }
+        /* =====================================================
+           FRASE
+        ====================================================== */
+        .quote {
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 10vw;
+            background: var(--wine);
+            color: white;
+        }
+        .quote-symbol {
+            font-family: var(--serif);
+            font-size: 100px;
+            color: var(--gold);
+            line-height: .5;
+        }
+        blockquote {
+            max-width: 900px;
+            font-family: var(--serif);
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            line-height: 1;
+            margin: 40px 0;
+        }
+        blockquote em {
+            color: var(--pink);
+        }
+        .quote > span {
+            font-size: 8px;
+            letter-spacing: 4px;
+            color: var(--gold-light);
+        }
+        /* =====================================================
+           AGENDAMENTO
+        ====================================================== */
+        .booking {
+            display: grid;
+            grid-template-columns: 1.3fr .7fr;
+            gap: 10vw;
+            background: var(--cream);
+        }
+        .booking-content h2 {
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+        .booking-content > p:not(.eyebrow) {
+            max-width: 450px;
+            color: var(--gray);
+            line-height: 1.9;
+            margin-bottom: 35px;
+        }
+        .booking-details {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            border-left: 1px solid var(--border);
+            padding-left: 50px;
+        }
+        .booking-details div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .booking-details span {
+            color: var(--gold);
+            font-size: 9px;
+            letter-spacing: 3px;
+        }
+        .booking-details strong {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+        .footer {
+            padding: 70px 9vw 30px;
+            background: var(--wine-dark);
+            color: white;
+        }
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            padding-bottom: 70px;
+            border-bottom: 1px solid rgba(255,255,255,.12);
+        }
+        .footer-top p {
+            font-family: var(--serif);
+            font-size: 25px;
+            line-height: 1.1;
+            color: var(--pink);
+        }
+        .socials {
+            display: flex;
+            gap: 25px;
+        }
+        .socials a {
+            font-size: 10px;
+            letter-spacing: 1px;
+            color: var(--gold-light);
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 25px;
+            font-size: 8px;
+            letter-spacing: 1px;
+            opacity: .5;
+        }
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+        @media (max-width: 900px) {
+            .header {
+                height: 80px;
+                padding: 0 6vw;
+            }
+            .nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                padding: 120px 40px;
+                flex-direction: column;
+                gap: 30px;
+                background: var(--wine-dark);
+                transition: .5s ease;
+            }
+            .nav.active {
+                right: 0;
+            }
+            .nav a {
+                font-family: var(--serif);
+                font-size: 28px;
+                letter-spacing: 0;
+            }
+            .header-button {
+                display: none;
+            }
+            .menu-button {
+                display: block;
+                position: relative;
+                z-index: 1001;
+            }
+            .menu-button.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .menu-button.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-button.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            .hero {
+                padding: 120px 7vw 80px;
+                min-height: 100svh;
+            }
+            .hero h1 {
+                font-size: clamp(4rem, 18vw, 6rem);
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .section {
+                padding: 90px 7vw;
+            }
+            .intro {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .about {
+                grid-template-columns: 1fr;
+                gap: 70px;
+            }
+            .about-image {
+                height: 500px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .service-card {
+                min-height: 280px;
+            }
+            .section-heading {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 250px;
+            }
+            .gallery-item.large {
+                grid-column: span 2;
+            }
+            .booking {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            .booking-details {
+                border-left: none;
+                border-top: 1px solid var(--border);
+                padding-left: 0;
+                padding-top: 40px;
+            }
+            .footer-top {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+        /* =====================================================
+           CELULAR PEQUENO
+        ====================================================== */
+        @media (max-width: 500px) {
+            .logo span {
+                font-size: 1.6rem;
+            }
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+            .about-stats {
+                gap: 20px;
+            }
+            .about-stats strong {
+                font-size: 1.8rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-item.large {
+                grid-column: span 1;
+            }
+            .gallery-grid {
+                grid-auto-rows: 300px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+    <header class="header" id="header">
+        <a href="#inicio" class="logo">
+            <span>ÉLIA</span>
+            <small>BEAUTY & HAIR</small>
+        </a>
+        <nav class="nav" id="nav">
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#experiencia">Experiência</a>
+            <a href="#galeria">Galeria</a>
+            <a href="#contato">Contato</a>
+        </nav>
+        <a href="#agendamento" class="header-button">
+            Agendar
+        </a>
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Abrir menu"
+            aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
+    <main>
+        <!-- HERO -->
+        <section class="hero" id="inicio">
+            <div class="hero-content">
+                <p class="eyebrow">
+                    BEAUTY • HAIR • EXPERIENCE
+                </p>
+                <h1>
+                    Sua beleza,<br>
+                    <em>elevada.</em>
+                </h1>
+                <p class="hero-text">
+                    Um espaço criado para transformar o cuidado
+                    com seus cabelos em uma experiência
+                    verdadeiramente extraordinária.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#agendamento" class="btn btn-primary">
+                        Agendar experiência
+                    </a>
+                    <a href="#servicos" class="btn btn-outline">
+                        Conhecer serviços
+                    </a>
+                </div>
+            </div>
+            <div class="hero-bottom">
+                <span>SCROLL TO EXPLORE</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+        <!-- INTRO -->
+        <section class="intro section">
+            <div class="intro-label">
+                <span>01</span>
+                <div></div>
+                <span>THE ÉLIA EXPERIENCE</span>
+            </div>
+            <div class="intro-content">
+                <p class="eyebrow">
+                    MAIS QUE UM SALÃO
+                </p>
+                <h2>
+                    Beleza com <em>personalidade.</em>
+                </h2>
+                <p>
+                    No ÉLIA, cada detalhe foi pensado para proporcionar
+                    uma experiência única. Unimos técnica, estética
+                    e cuidado para criar resultados que valorizam
+                    a identidade de cada mulher.
+                </p>
+                <a href="#sobre" class="text-link">
+                    Descubra nossa história
+                    <span>↗</span>
+                </a>
+            </div>
+        </section>
+        <!-- SOBRE -->
+        <section class="about section" id="sobre">
+            <div class="about-image">
+                <div class="image-frame"></div>
+                <div class="about-badge">
+                    <strong>É</strong>
+                    <span>
+                        BEAUTY<br>
+                        STUDIO
+                    </span>
+                </div>
+            </div>
+            <div class="about-content">
+                <p class="eyebrow">
+                    NOSSO CONCEITO
+                </p>
+                <h2>
+                    Onde o luxo encontra
+                    <em>a naturalidade.</em>
+                </h2>
+                <p>
+                    Acreditamos que beleza não precisa ser exagerada.
+                    Ela precisa revelar aquilo que torna você única.
+                </p>
+                <p>
+                    Por isso, nosso trabalho combina técnicas
+                    contemporâneas, produtos selecionados e um olhar
+                    personalizado para cada cliente.
+                </p>
+                <div class="about-stats">
+                    <div>
+                        <strong>08+</strong>
+                        <span>Anos de experiência</span>
+                    </div>
+                    <div>
+                        <strong>2K+</strong>
+                        <span>Clientes atendidas</span>
+                    </div>
+                    <div>
+                        <strong>15</strong>
+                        <span>Especialidades</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SERVIÇOS -->
+        <section class="services section" id="servicos">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">
+                        02 / SERVIÇOS
+                    </p>
+                    <h2>
+                        Nossos <em>rituais</em>
+                    </h2>
+                </div>
+                <p>
+                    Serviços desenvolvidos para cuidar,
+                    transformar e valorizar sua beleza.
+                </p>
+            </div>
+            <div class="services-grid">
+                <article class="service-card">
+                    <span class="service-number">01</span>
+                    <div class="service-icon">✦</div>
+                    <h3>Corte & Styling</h3>
+                    <p>
+                        Cortes personalizados e finalizações
+                        que respeitam seu estilo.
+                    </p>
+                    <span class="service-arrow">↗</span>
+                </article>
+                <article class="service-card featured">
+                    <span class="service-number">02</span>
+                    <div class="service-icon">✦</div>
+                    <h3>Coloração</h3>
+                    <p>
+                        Cores sofisticadas, luminosidade e
+                        técnicas personalizadas.
+                    </p>
+                    <span class="service-arrow">↗</span>
+                </article>
+                <article class="service-card">
+                    <span class="service-number">03</span>
+                    <div class="service-icon">✦</div>
+                    <h3>Mechas & Balayage</h3>
+                    <p>
+                        Iluminação natural e dimensão
+                        cuidadosamente construída.
+                    </p>
+                    <span class="service-arrow">↗</span>
+                </article>
+                <article class="service-card">
+                    <span class="service-number">04</span>
+                    <div class="service-icon">✦</div>
+                    <h3>Tratamentos</h3>
+                    <p>
+                        Protocolos exclusivos para recuperar
+                        força, brilho e movimento.
+                    </p>
+                    <span class="service-arrow">↗</span>
+                </article>
+                <article class="service-card">
+                    <span class="service-number">05</span>
+                    <div class="service-icon">✦</div>
+                    <h3>Escova</h3>
+                    <p>
+                        Finalização impecável para todos
+                        os momentos.
+                    </p>
+                    <span class="service-arrow">↗</span>
+                </article>
+                <article class="service-card">
+                    <span class="service-number">06</span>
+                    <div class="service-icon">✦</div>
+                    <h3>Penteados</h3>
+                    <p>
+                        Produções especiais para eventos
+                        e ocasiões inesquecíveis.
+                    </p>
+                    <span class="service-arrow">↗</span>
+                </article>
+            </div>
+        </section>
+        <!-- EXPERIÊNCIA -->
+        <section class="experience" id="experiencia">
+            <div class="experience-content">
+                <p class="eyebrow">
+                    THE SIGNATURE EXPERIENCE
+                </p>
+                <h2>
+                    Um momento<br>
+                    <em>só seu.</em>
+                </h2>
+                <p>
+                    Uma experiência completa de beleza,
+                    criada para você desacelerar e simplesmente
+                    aproveitar o momento.
+                </p>
+                <a href="#agendamento" class="btn btn-primary">
+                    Conhecer experiência
+                </a>
+            </div>
+        </section>
+        <!-- GALERIA -->
+        <section class="gallery section" id="galeria">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">
+                        03 / PORTFÓLIO
+                    </p>
+                    <h2>
+                        Nossa <em>arte</em>
+                    </h2>
+                </div>
+                <p>
+                    Alguns dos trabalhos que representam
+                    nossa identidade.
+                </p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item large">
+                    <div class="gallery-placeholder">
+                        <span>01</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span>02</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span>03</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span>04</span>
+                    </div>
+                </div>
+                <div class="gallery-item large">
+                    <div class="gallery-placeholder">
+                        <span>05</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FRASE -->
+        <section class="quote">
+            <div class="quote-symbol">
+                “
+            </div>
+            <blockquote>
+                A verdadeira beleza começa
+                quando você se sente
+                <em>você mesma.</em>
+            </blockquote>
+            <span>
+                ÉLIA BEAUTY & HAIR
+            </span>
+        </section>
+        <!-- AGENDAMENTO -->
+        <section class="booking section" id="agendamento">
+            <div class="booking-content">
+                <p class="eyebrow">
+                    04 / AGENDAMENTO
+                </p>
+                <h2>
+                    Seu próximo momento
+                    <em>começa aqui.</em>
+                </h2>
+                <p>
+                    Escolha seu serviço e venha viver
+                    uma experiência ÉLIA.
+                </p>
+                <a href="#" class="btn btn-primary">
+                    Agendar pelo WhatsApp
+                </a>
+            </div>
+            <div class="booking-details">
+                <div>
+                    <span>ENDEREÇO</span>
+                    <strong>
+                        Rua Example, 000<br>
+                        São Paulo — SP
+                    </strong>
+                </div>
+                <div>
+                    <span>HORÁRIOS</span>
+                    <strong>
+                        Ter — Sex · 09h — 20h<br>
+                        Sáb · 09h — 18h
+                    </strong>
+                </div>
+                <div>
+                    <span>CONTATO</span>
+                    <strong>
+                        (11) 99999-9999<br>
+                        @eliabeauty
+                    </strong>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+    <footer class="footer" id="contato">
+        <div class="footer-top">
+            <a href="#inicio" class="logo">
+                <span>ÉLIA</span>
+                <small>
+                    BEAUTY & HAIR
+                </small>
+            </a>
+            <p>
+                Beleza, sofisticação<br>
+                e personalidade.
+            </p>
+            <div class="socials">
+                <a href="#">
+                    Instagram
+                </a>
+                <a href="#">
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>
+                © 2026 ÉLIA Beauty & Hair
+            </span>
+            <span>
+                Designed with intention.
+            </span>
+        </div>
+    </footer>
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+    <script>
+        const header = document.getElementById("header");
+        const menuButton = document.getElementById("menuButton");
+        const nav = document.getElementById("nav");
+        /* HEADER AO ROLAR */
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+        /* MENU MOBILE */
+        menuButton.addEventListener("click", () => {
+            const isOpen =
+                menuButton.classList.toggle("active");
+            nav.classList.toggle("active");
+            menuButton.setAttribute(
+                "aria-expanded",
+                isOpen
+            );
+        });
+        /* FECHAR MENU */
+        document.querySelectorAll(".nav a").forEach(link => {
+            link.addEventListener("click", () => {
+                menuButton.classList.remove("active");
+                nav.classList.remove("active");
+                menuButton.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+            });
+        });
+    </script>
+</body>
+</html>
